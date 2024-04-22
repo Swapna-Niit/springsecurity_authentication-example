@@ -30,9 +30,15 @@ public class ProjectSecurityconfig {
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.formLogin();
-		http.authorizeHttpRequests().requestMatchers("/").permitAll().
-		anyRequest().authenticated();
+		http.authorizeHttpRequests().requestMatchers("/protected").authenticated().
+		anyRequest().permitAll();
 		return http.build();
 	}
+	
+	/*
+	 * @Override protected void configure(HttpSecurity http) throws Exception {
+	 * http.authorizeRequests() .antMatchers("/protected").authenticated()
+	 * .antMatchers("/home").permitAll() .and() .formLogin() .and() .httpBasic(); }
+	 */
 
 }
